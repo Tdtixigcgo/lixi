@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔐 Admin · Lì Xì Dashboard</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../admin.css" />
+</head>
+<body>
+
+<!-- ===================== LOGIN SCREEN ===================== -->
+<div id="login-screen">
+  <div class="login-box">
+    <span class="login-logo">🔐</span>
+    <h1 class="login-title">Admin Dashboard</h1>
+    <p class="login-subtitle">Lì Xì Tết · Quản Trị</p>
+
+    <form id="login-form" novalidate>
+      <div class="login-field">
+        <label for="login-user">Tên đăng nhập</label>
+        <input
+          type="text"
+          id="login-user"
+          placeholder="admin"
+          autocomplete="username"
+          required
+        />
+      </div>
+      <div class="login-field">
+        <label for="login-pass">Mật khẩu</label>
+        <input
+          type="password"
+          id="login-pass"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+      <p class="login-error" id="login-error" role="alert"></p>
+      <button type="submit" class="login-btn">🔓 Đăng Nhập</button>
+    </form>
+
+    <p class="login-back">
+      ← <a href="/">Quay về trang chơi</a>
+    </p>
+  </div>
+</div>
+
+<!-- ===================== ADMIN APP ===================== -->
+<div id="admin-app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin navigation">
+    <div class="sidebar-logo">
+      <span class="logo-icon">🧧</span>
+      <div>
+        <div class="logo-text">Lì Xì Admin</div>
+        <div class="logo-sub">Tết 2025</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-label">Tổng quan</div>
+        <button class="nav-link active" data-tab="overview">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">Dashboard</span>
+        </button>
+        <button class="nav-link" data-tab="envelopes">
+          <span class="nav-icon">🧧</span>
+          <span class="nav-label">Phong bì</span>
+          <span class="nav-badge" id="badge-special">2</span>
+        </button>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Phân tích</div>
+        <button class="nav-link" data-tab="analytics">
+          <span class="nav-icon">📈</span>
+          <span class="nav-label">Thống kê</span>
+        </button>
+        <button class="nav-link" data-tab="special">
+          <span class="nav-icon">⭐</span>
+          <span class="nav-label">Ô đặc biệt</span>
+        </button>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Hệ thống</div>
+        <button class="nav-link" data-tab="settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Cài đặt</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">A</div>
+        <div>
+          <div class="user-name">Admin</div>
+          <div class="user-role">Quản trị viên</div>
+        </div>
+        <button class="logout-btn" id="logout-btn" title="Đăng xuất" aria-label="Đăng xuất">⏻</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <h2 class="top-bar-title" id="top-bar-title">Dashboard</h2>
+      <div class="top-bar-actions">
+        <span class="top-badge">🔒 ADMIN</span>
+        <button class="icon-btn" id="refresh-btn" title="Làm mới" aria-label="Làm mới dữ liệu">↺</button>
+        <button class="icon-btn" id="export-btn" title="Xuất CSV" aria-label="Xuất dữ liệu CSV">📥</button>
+        <a class="icon-btn" id="goto-main-btn" href="/" title="Trang chính" aria-label="Về trang chính">🏠</a>
+      </div>
+    </div>
+
+    <!-- CONTENT AREA -->
+    <div class="content-area">
+
+      <!-- ===== TAB: OVERVIEW ===== -->
+      <section class="tab-section active" id="tab-overview">
+
+        <!-- Metrics Row 1 -->
+        <div class="metrics-grid">
+          <div class="metric-card gold">
+            <span class="metric-icon">🧧</span>
+            <div class="metric-value" id="m-total">20</div>
+            <div class="metric-label">Tổng số ô</div>
+            <span class="metric-sub">Cố định</span>
+          </div>
+          <div class="metric-card green">
+            <span class="metric-icon">✅</span>
+            <div class="metric-value" id="m-opened">0</div>
+            <div class="metric-label">Đã mở</div>
+          </div>
+          <div class="metric-card blue">
+            <span class="metric-icon">⏳</span>
+            <div class="metric-value" id="m-pending">20</div>
+            <div class="metric-label">Chưa mở</div>
+          </div>
+          <div class="metric-card red">
+            <span class="metric-icon">⭐</span>
+            <div class="metric-value" id="m-special-opened">0/2</div>
+            <div class="metric-label">Ô đặc biệt mở</div>
+          </div>
+        </div>
+
+        <!-- Metrics Row 2 -->
+        <div class="metrics-grid" style="margin-bottom:28px">
+          <div class="metric-card purple">
+            <span class="metric-icon">💵</span>
+            <div class="metric-value" id="m-display-total">0k</div>
+            <div class="metric-label">Tổng hiển thị (đã mở)</div>
+          </div>
+          <div class="metric-card gold">
+            <span class="metric-icon">💰</span>
+            <div class="metric-value" id="m-real-total">0k</div>
+            <div class="metric-label">Tổng thực (đã mở)</div>
+          </div>
+          <div class="metric-card blue">
+            <span class="metric-icon">📊</span>
+            <div class="metric-value" id="m-progress-pct">0%</div>
+            <div class="metric-label">Tiến độ bốc</div>
+          </div>
+        </div>
+
+        <!-- Chart section -->
+        <div class="chart-section">
+          <div class="chart-card">
+            <div class="chart-card-title">📊 Phân phối mệnh giá thực</div>
+            <div id="chart-distribution"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">🎯 Tỉ lệ mở</div>
+            <div id="chart-open-rate"></div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===== TAB: ENVELOPES ===== -->
+      <section class="tab-section" id="tab-envelopes">
+        <div class="table-section">
+          <div class="table-header">
+            <div class="table-title">
+              <span class="t-icon">🧧</span>
+              Danh sách phong bì
+            </div>
+            <div class="table-controls">
+              <input
+                type="search"
+                class="search-input"
+                id="env-search"
+                placeholder="Tìm kiếm..."
+                aria-label="Tìm kiếm phong bì"
+              />
+              <select class="filter-select" id="env-filter" aria-label="Lọc theo trạng thái">
+                <option value="all">Tất cả</option>
+                <option value="opened">Đã mở</option>
+                <option value="pending">Chưa mở</option>
+                <option value="special">Đặc biệt</option>
+              </select>
+            </div>
+          </div>
+          <table class="data-table" role="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Loại</th>
+                <th>Hiển thị</th>
+                <th>Mệnh giá thực</th>
+                <th>Trạng thái</th>
+                <th>Thời gian</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="env-tbody">
+              <!-- Rendered by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== TAB: ANALYTICS ===== -->
+      <section class="tab-section" id="tab-analytics">
+        <div class="chart-section">
+          <div class="chart-card">
+            <div class="chart-card-title">📊 Chi tiết phân phối mệnh giá</div>
+            <div id="chart-distribution-2"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">🎯 Tỉ lệ mở chi tiết</div>
+            <div id="chart-open-rate-2"></div>
+          </div>
+        </div>
+
+        <div class="table-section">
+          <div class="table-header">
+            <div class="table-title">
+              <span class="t-icon">📋</span>
+              Lịch sử bốc (thứ tự thời gian)
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Mệnh giá thực</th>
+                <th>Thời gian mở</th>
+                <th>Loại</th>
+              </tr>
+            </thead>
+            <tbody id="history-tbody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== TAB: SPECIAL ===== -->
+      <section class="tab-section" id="tab-special">
+        <div class="special-highlight">
+          <div class="special-highlight-title">
+            ⭐ Ô Đặc Biệt (Mệnh giá ẩn: 50k &amp; 100k)
+          </div>
+          <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:20px">
+            Những ô này hiển thị mệnh giá 1–20k với người chơi, nhưng giá trị thực cao hơn.
+            Khi mở, người chơi sẽ được hướng dẫn đến trang admin này.
+          </p>
+          <div class="special-cards-grid" id="special-cards">
+            <!-- Rendered by admin.js -->
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-card-title">ℹ️ Cơ chế hoạt động</div>
+          <div style="font-size:0.88rem;color:var(--text-secondary);line-height:1.8">
+            <p style="margin-bottom:10px">
+              🔸 <strong style="color:var(--text-primary)">Mệnh giá hiển thị:</strong>
+              Người chơi thấy mệnh giá 1k – 20k ngẫu nhiên khi bốc.
+            </p>
+            <p style="margin-bottom:10px">
+              🔸 <strong style="color:var(--text-primary)">Mệnh giá thực:</strong>
+              2 ô đặc biệt có giá trị thực là 50k và 100k — chỉ admin biết vị trí.
+            </p>
+            <p style="margin-bottom:10px">
+              🔸 <strong style="color:var(--text-primary)">Khi mở ô đặc biệt:</strong>
+              Hệ thống hiển thị mệnh giá bình thường cho người chơi, sau đó gợi ý truy cập <code style="color:var(--gold)">/admin</code> để biết mệnh giá thực.
+            </p>
+            <p>
+              🔸 <strong style="color:var(--text-primary)">Bảo mật:</strong>
+              Trang admin yêu cầu đăng nhập để xem thông tin mệnh giá ẩn.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TAB: SETTINGS ===== -->
+      <section class="tab-section" id="tab-settings">
+        <div class="settings-grid">
+
+          <div class="settings-card">
+            <div class="settings-card-title">⚙️ Cấu hình game</div>
+            <div class="setting-row">
+              <span class="setting-label">Tổng số ô</span>
+              <span class="setting-value" id="cfg-total">20</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Số ô đặc biệt</span>
+              <span class="setting-value" id="cfg-special">2</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Mệnh giá hiển thị tối thiểu</span>
+              <span class="setting-value" id="cfg-min">1k</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Mệnh giá hiển thị tối đa</span>
+              <span class="setting-value" id="cfg-max">20k</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Mệnh giá ẩn (đặc biệt)</span>
+              <span class="setting-value" id="cfg-hidden">50k, 100k</span>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-card-title">🛠 Thao tác</div>
+            <button class="action-btn action-btn-red" id="reset-game-btn">
+              🔄 Đặt lại toàn bộ game
+            </button>
+            <button class="action-btn action-btn-gold" id="export-btn-2" onclick="document.getElementById('export-btn').click()">
+              📥 Xuất dữ liệu CSV
+            </button>
+            <button class="action-btn action-btn-blue" onclick="window.open('/','_blank')">
+              🧧 Mở trang người chơi
+            </button>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-card-title">🔐 Bảo mật</div>
+            <div class="setting-row">
+              <span class="setting-label">Phiên đăng nhập</span>
+              <span class="setting-value">SessionStorage</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Lưu trữ dữ liệu</span>
+              <span class="setting-value">localStorage</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Route admin</span>
+              <span class="setting-value">/admin</span>
+            </div>
+            <button class="action-btn action-btn-red" id="logout-btn-2" onclick="document.getElementById('logout-btn').click()">
+              ⏻ Đăng xuất
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+    </div><!-- /content-area -->
+  </main>
+
+</div><!-- /admin-app -->
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // Render history tab when it becomes active
+  document.addEventListener('click', (e) => {
+    if (e.target.dataset.tab === 'analytics') {
+      setTimeout(renderHistoryTab, 100);
+    }
+  });
+
+  function renderHistoryTab() {
+    if (!window.gameData) return;
+    const tbody = document.getElementById('history-tbody');
+    if (!tbody) return;
+
+    const opened = window.gameData
+      .filter(e => e.opened && e.openedAt)
+      .sort((a, b) => new Date(a.openedAt) - new Date(b.openedAt));
+
+    tbody.innerHTML = opened.map(e => `
+      <tr>
+        <td style="font-family:'JetBrains Mono',monospace;color:var(--text-primary)">#${String(e.id).padStart(2,'0')}</td>
+        <td style="font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:${e.isSpecial?'var(--gold-shine)':'var(--text-primary)'}">
+          ${e.realValue}k ${e.isSpecial?'⭐':''}
+        </td>
+        <td style="font-size:0.82rem;color:var(--text-muted)">${new Date(e.openedAt).toLocaleString('vi-VN')}</td>
+        <td><span class="badge ${e.isSpecial?'badge-special':'badge-normal'}">${e.isSpecial?'🔥 Đặc biệt':'📦 Thường'}</span></td>
+      </tr>
+    `).join('');
+
+    if (opened.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:30px">Chưa có ô nào được mở</td></tr>';
+    }
+  }
+</script>
+
+<script src="../admin.js"></script>
+</body>
+</html>
