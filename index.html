@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧧 Bốc Lì Xì Tết 2025</title>
+  <meta name="description" content="Trò chơi bốc lì xì may mắn ngày Tết" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-layer" aria-hidden="true"></div>
+  <div class="bg-pattern" aria-hidden="true"></div>
+
+  <!-- Main Page -->
+  <div class="page-wrapper">
+    <div class="container">
+
+      <!-- HEADER -->
+      <header class="site-header">
+        <div class="header-ornament" aria-hidden="true">🏮 ✦ 🧧 ✦ 🏮</div>
+        <h1 class="site-title">Lì Xì Tết 2025</h1>
+        <p class="site-subtitle">Chúc mừng năm mới · Vạn sự như ý</p>
+        <div class="gold-divider" aria-hidden="true"></div>
+      </header>
+
+      <!-- STATS BAR -->
+      <div class="stats-bar" role="status" aria-live="polite">
+        <div class="stat-chip">
+          <span class="stat-icon">🧧</span>
+          Đã bốc: <span class="stat-val" id="stat-opened">0</span>/<span class="stat-val" id="stat-total">20</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-icon">💰</span>
+          Tổng nhận: <span class="stat-val" id="stat-amount">0</span>k
+        </div>
+      </div>
+
+      <!-- ENVELOPES -->
+      <section class="envelope-section" aria-label="Các phong bì lì xì">
+        <p class="section-label">✦ Chọn một phong bì may mắn của bạn ✦</p>
+
+        <div class="envelope-grid" id="envelope-grid" role="list">
+          <!-- Dynamically rendered by main.js -->
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="actions-row">
+          <button class="btn btn-primary" id="reset-btn" aria-label="Chơi lại">
+            🔄 Chơi Lại
+          </button>
+          <button class="btn btn-outline" onclick="window.location.href='/admin'" aria-label="Quản trị">
+            🔐 Quản Trị
+          </button>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
+        <p>✦ Chúc mừng năm mới · An khang thịnh vượng · Vạn sự như ý ✦</p>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- REVEAL MODAL -->
+  <div class="reveal-overlay" id="reveal-overlay" role="dialog" aria-modal="true" aria-labelledby="reveal-amount">
+    <div class="reveal-card">
+      <span class="reveal-big-emoji" id="reveal-emoji" aria-hidden="true">🧧</span>
+      <p class="reveal-label">Lì Xì Của Bạn</p>
+      <div class="reveal-amount" id="reveal-amount" aria-live="assertive">0</div>
+      <p class="reveal-unit" id="reveal-unit">nghìn đồng</p>
+      <p class="reveal-message" id="reveal-message"></p>
+      <button class="reveal-close-btn" id="reveal-close-btn">
+        Cảm ơn! 🌸
+      </button>
+    </div>
+  </div>
+
+  <!-- ADMIN HINT STYLES (inline for simplicity) -->
+  <style>
+    #admin-hint {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .admin-hint-card {
+      background: linear-gradient(150deg, #11121f, #1a1a2e);
+      border: 1px solid rgba(212,160,23,0.4);
+      border-radius: 24px;
+      padding: 45px 50px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      animation: hintPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @keyframes hintPop {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .hint-icon { font-size: 3.5rem; margin-bottom: 16px; display: block; }
+    .hint-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 1.3rem;
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+    .hint-sub {
+      font-size: 0.9rem;
+      color: rgba(255,215,0,0.7);
+      margin-bottom: 6px;
+    }
+    .hint-sub strong { color: #ffd700; font-size: 1.1em; }
+    .hint-desc {
+      font-size: 0.88rem;
+      color: #8888a0;
+      margin-bottom: 25px;
+    }
+
+    /* Override btn styles for hint */
+    #admin-hint .btn-primary {
+      background: linear-gradient(135deg, #c0392b, #e74c3c) !important;
+      color: white !important;
+      box-shadow: 0 4px 20px rgba(192,57,43,0.5) !important;
+    }
+    #admin-hint .btn-outline {
+      background: rgba(255,255,255,0.05) !important;
+      color: #8888a0 !important;
+      border-color: rgba(255,255,255,0.1) !important;
+    }
+  </style>
+
+  <script src="main.js"></script>
+</body>
+</html>
