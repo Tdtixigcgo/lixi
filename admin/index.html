@@ -1,318 +1,374 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🔐 Admin · Lì Xì Dashboard</title>
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Noto+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-:root{--bg-base:#0b0c14;--bg-card:#11121f;--bg-hover:#181929;--border:rgba(255,255,255,0.06);--border-gold:rgba(212,160,23,0.3);--border-red:rgba(192,57,43,0.35);--red:#c0392b;--red-light:#e74c3c;--gold:#d4a017;--gold-light:#f1c40f;--gold-shine:#ffd700;--text-primary:#e8e8f0;--text-secondary:#8888a0;--text-muted:#44445a;--green:#2ecc71;--blue:#3498db;--orange:#e67e22;--purple:#9b59b6;--sidebar-w:260px;--header-h:64px;--radius:14px}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>🔐 Admin · Lì Xì Control Panel</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Noto+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0b0c14;--card:#11121f;--hover:#181929;--border:rgba(255,255,255,.07);--border-gold:rgba(212,160,23,.35);--border-red:rgba(192,57,43,.4);--red:#c0392b;--red2:#e74c3c;--gold:#d4a017;--gold2:#f1c40f;--gold3:#ffd700;--txt:#e8e8f0;--txt2:#8888a0;--txt3:#44445a;--green:#2ecc71;--blue:#3498db;--sw:260px;--hh:64px;--r:14px}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{font-size:15px}
-body{font-family:'Noto Sans',sans-serif;background:var(--bg-base);color:var(--text-primary);min-height:100vh;overflow-x:hidden}
-#login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0b0c14 0%,#15162a 50%,#0e0f1c 100%);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s,visibility .5s}
+html{font-size:15px}body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+
+/* ── LOGIN ── */
+#login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0b0c14,#15162a,#0e0f1c);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s,visibility .5s}
 #login-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.login-box{background:var(--bg-card);border:1px solid var(--border-gold);border-radius:24px;padding:55px 50px;width:min(420px,92vw);text-align:center;box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(192,57,43,.08),inset 0 1px 0 rgba(255,255,255,.06);animation:loginAppear .6s cubic-bezier(.22,1,.36,1) both}
-@keyframes loginAppear{from{opacity:0;transform:translateY(40px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
-.login-logo{font-size:3.5rem;margin-bottom:20px;display:block;animation:logoPulse 2s ease-in-out infinite}
-@keyframes logoPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(255,215,0,.4))}50%{filter:drop-shadow(0 0 20px rgba(255,215,0,.8))}}
-.login-title{font-family:'Noto Serif',serif;font-size:1.6rem;color:var(--gold-shine);margin-bottom:6px}
-.login-subtitle{font-size:.8rem;color:var(--text-secondary);letter-spacing:3px;text-transform:uppercase;margin-bottom:35px}
-.login-field{margin-bottom:16px;text-align:left}
-.login-field label{display:block;font-size:.75rem;color:var(--text-secondary);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
-.login-field input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:.95rem;outline:none;transition:border-color .2s,box-shadow .2s}
-.login-field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,160,23,.12)}
-.login-field input::placeholder{color:var(--text-muted)}
-.login-error{color:var(--red-light);font-size:.82rem;margin-bottom:12px;min-height:20px}
+.lbox{background:var(--card);border:1px solid var(--border-gold);border-radius:24px;padding:55px 50px;width:min(420px,92vw);text-align:center;box-shadow:0 40px 80px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);animation:lappear .6s cubic-bezier(.22,1,.36,1) both}
+@keyframes lappear{from{opacity:0;transform:translateY(40px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.llogo{font-size:3.5rem;margin-bottom:20px;display:block;animation:lpulse 2s ease-in-out infinite}
+@keyframes lpulse{0%,100%{filter:drop-shadow(0 0 8px rgba(255,215,0,.4))}50%{filter:drop-shadow(0 0 22px rgba(255,215,0,.9))}}
+.ltitle{font-family:'Noto Serif',serif;font-size:1.6rem;color:var(--gold3);margin-bottom:6px}
+.lsub{font-size:.8rem;color:var(--txt2);letter-spacing:3px;text-transform:uppercase;margin-bottom:35px}
+.lfield{margin-bottom:16px;text-align:left}
+.lfield label{display:block;font-size:.75rem;color:var(--txt2);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
+.lfield input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:.95rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.lfield input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,160,23,.12)}
+.lfield input::placeholder{color:var(--txt3)}
+.lerr{color:var(--red2);font-size:.82rem;margin-bottom:12px;min-height:20px}
+.lerr.shake{animation:shake .3s ease}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-.login-error.shake{animation:shake .3s ease}
-.login-btn{width:100%;background:linear-gradient(135deg,var(--red),var(--red-light));color:#fff;border:none;padding:14px;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Noto Sans',sans-serif;letter-spacing:1px;transition:all .25s;margin-top:5px;box-shadow:0 4px 20px rgba(192,57,43,.4)}
-.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(192,57,43,.5)}
-.login-back{margin-top:20px;font-size:.82rem;color:var(--text-secondary)}
-.login-back a{color:var(--gold);text-decoration:none}
-.login-back a:hover{color:var(--gold-shine)}
-#admin-app{display:none;min-height:100vh}
-#admin-app.visible{display:flex}
-.sidebar{width:var(--sidebar-w);background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;transition:transform .3s}
-.sidebar-logo{padding:25px 24px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-.sidebar-logo .logo-icon{font-size:1.8rem}
-.sidebar-logo .logo-text{font-family:'Noto Serif',serif;font-size:1.05rem;color:var(--gold-shine);line-height:1.2}
-.sidebar-logo .logo-sub{font-size:.68rem;color:var(--text-secondary);letter-spacing:2px;text-transform:uppercase}
-.sidebar-nav{padding:16px 0;flex:1}
-.nav-section{padding:0 12px;margin-bottom:8px}
-.nav-section-label{font-size:.65rem;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;padding:8px 12px 6px}
-.nav-link{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;text-decoration:none;color:var(--text-secondary);font-size:.9rem;transition:all .2s;cursor:pointer;border:none;background:none;width:100%;text-align:left}
-.nav-link:hover{background:var(--bg-hover);color:var(--text-primary)}
-.nav-link.active{background:rgba(192,57,43,.15);color:var(--gold)}
-.nav-link .nav-icon{font-size:1.1rem;width:22px;text-align:center}
-.nav-link .nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:.65rem;padding:2px 7px;border-radius:20px;font-weight:700}
-.sidebar-footer{padding:16px 24px;border-top:1px solid var(--border)}
-.sidebar-user{display:flex;align-items:center;gap:10px}
-.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1rem}
-.user-name{font-size:.88rem;color:var(--text-primary);font-weight:600}
-.user-role{font-size:.72rem;color:var(--text-secondary)}
-.logout-btn{margin-left:auto;background:none;border:none;cursor:pointer;font-size:1.1rem;opacity:.5;transition:opacity .2s}
-.logout-btn:hover{opacity:1}
-.main-content{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
-.top-bar{height:var(--header-h);background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 30px;position:sticky;top:0;z-index:50;gap:20px}
-.top-bar-title{font-family:'Noto Serif',serif;font-size:1.15rem;color:var(--text-primary);flex:1}
-.top-bar-actions{display:flex;gap:10px;align-items:center}
-.top-badge{background:rgba(192,57,43,.15);border:1px solid var(--border-red);color:var(--red-light);padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:600;letter-spacing:1px}
-.icon-btn{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text-secondary);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all .2s;text-decoration:none}
-.icon-btn:hover{background:var(--bg-hover);color:var(--text-primary);border-color:rgba(255,255,255,.12)}
-.content-area{padding:30px;flex:1;animation:slideIn .4s both}
-@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
-.tab-section{display:none}
-.tab-section.active{display:block}
-.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:28px}
-.metric-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;position:relative;overflow:hidden;transition:all .25s}
-.metric-card:hover{border-color:rgba(255,255,255,.12);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.metric-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
-.metric-card.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold-shine))}
-.metric-card.red::before{background:linear-gradient(90deg,var(--red),var(--red-light))}
-.metric-card.green::before{background:linear-gradient(90deg,#27ae60,var(--green))}
-.metric-card.blue::before{background:linear-gradient(90deg,#2980b9,var(--blue))}
-.metric-card.purple::before{background:linear-gradient(90deg,#8e44ad,var(--purple))}
-.metric-icon{font-size:1.6rem;margin-bottom:12px;display:block}
-.metric-value{font-family:'Noto Serif',serif;font-size:2.2rem;font-weight:700;color:var(--text-primary);line-height:1;margin-bottom:5px}
-.metric-label{font-size:.78rem;color:var(--text-secondary);letter-spacing:1px;text-transform:uppercase}
-.metric-sub{position:absolute;top:22px;right:22px;font-size:.75rem;color:var(--text-muted);background:rgba(255,255,255,.04);padding:3px 10px;border-radius:20px;border:1px solid var(--border)}
-.table-section{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px}
-.table-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.table-title{font-family:'Noto Serif',serif;font-size:1rem;color:var(--text-primary);display:flex;align-items:center;gap:10px}
-.table-controls{display:flex;gap:10px;align-items:center}
-.search-input{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 14px;color:var(--text-primary);font-size:.82rem;outline:none;transition:border-color .2s;width:200px}
-.search-input:focus{border-color:var(--gold)}
-.search-input::placeholder{color:var(--text-muted)}
-.filter-select{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text-primary);font-size:.82rem;outline:none;cursor:pointer}
-.filter-select option{background:var(--bg-card)}
-.data-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.data-table th{padding:12px 20px;text-align:left;font-size:.72rem;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--border);background:rgba(255,255,255,.015);font-weight:600}
-.data-table td{padding:14px 20px;border-bottom:1px solid var(--border);color:var(--text-secondary);transition:background .15s}
-.data-table tr:last-child td{border-bottom:none}
-.data-table tbody tr:hover td{background:var(--bg-hover)}
-.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:.73rem;font-weight:600;letter-spacing:.5px}
-.badge-opened{background:rgba(46,204,113,.12);color:var(--green);border:1px solid rgba(46,204,113,.2)}
-.badge-pending{background:rgba(212,160,23,.12);color:var(--gold-light);border:1px solid rgba(212,160,23,.2)}
-.badge-special{background:rgba(192,57,43,.15);color:var(--red-light);border:1px solid rgba(192,57,43,.25)}
-.badge-normal{background:rgba(136,136,160,.1);color:var(--text-secondary);border:1px solid var(--border)}
-.chart-section{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
-@media(max-width:900px){.chart-section{grid-template-columns:1fr}}
-.chart-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
-.chart-card-title{font-family:'Noto Serif',serif;font-size:.95rem;color:var(--text-primary);margin-bottom:20px}
-.bar-row{margin-bottom:14px}
-.bar-label-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.8rem}
-.bar-label-text{color:var(--text-secondary)}
-.bar-label-val{color:var(--text-primary);font-weight:600;font-family:'JetBrains Mono',monospace}
-.bar-track{height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.22,1,.36,1);min-width:4px}
-.special-highlight{background:linear-gradient(135deg,rgba(192,57,43,.08),rgba(139,0,0,.05));border:1px solid var(--border-red);border-radius:var(--radius);padding:24px;margin-bottom:24px}
-.special-highlight-title{font-family:'Noto Serif',serif;font-size:1rem;color:var(--red-light);margin-bottom:16px}
-.special-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-.special-env-card{background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.25);border-radius:10px;padding:16px 18px;transition:all .2s}
-.special-env-card:hover{border-color:rgba(192,57,43,.5);transform:translateY(-2px)}
-.special-env-card .senv-num{font-size:.72rem;color:var(--text-muted);margin-bottom:6px}
-.special-env-card .senv-display{font-size:.85rem;color:var(--text-secondary);margin-bottom:4px}
-.special-env-card .senv-real{font-family:'Noto Serif',serif;font-size:1.5rem;font-weight:700;color:var(--gold-shine)}
-.special-env-card .senv-status{margin-top:8px}
-.settings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.settings-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
-.settings-card-title{font-family:'Noto Serif',serif;font-size:.95rem;color:var(--text-primary);margin-bottom:18px;display:flex;align-items:center;gap:8px}
-.setting-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
-.setting-row:last-child{border-bottom:none}
-.setting-label{font-size:.88rem;color:var(--text-secondary)}
-.setting-value{font-family:'JetBrains Mono',monospace;font-size:.88rem;color:var(--gold);background:rgba(212,160,23,.08);padding:4px 12px;border-radius:6px;border:1px solid rgba(212,160,23,.2)}
-.action-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:9px;border:none;cursor:pointer;font-family:'Noto Sans',sans-serif;font-size:.85rem;font-weight:600;transition:all .2s;margin-top:14px;width:100%;justify-content:center}
-.action-btn-red{background:rgba(192,57,43,.15);color:var(--red-light);border:1px solid rgba(192,57,43,.3)}
-.action-btn-red:hover{background:rgba(192,57,43,.3)}
-.action-btn-gold{background:rgba(212,160,23,.12);color:var(--gold);border:1px solid rgba(212,160,23,.25)}
-.action-btn-gold:hover{background:rgba(212,160,23,.25)}
-.action-btn-blue{background:rgba(52,152,219,.12);color:var(--blue);border:1px solid rgba(52,152,219,.25)}
-.action-btn-blue:hover{background:rgba(52,152,219,.25)}
-.toast{position:fixed;bottom:24px;right:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:14px 20px;font-size:.88rem;color:var(--text-primary);box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:9999;transform:translateX(120%);transition:transform .4s cubic-bezier(.22,1,.36,1);display:flex;align-items:center;gap:10px;min-width:240px}
-.toast.show{transform:translateX(0)}
-.toast.success{border-left:3px solid var(--green)}
-.toast.error{border-left:3px solid var(--red-light)}
-.toast.info{border-left:3px solid var(--gold)}
-@media(max-width:768px){:root{--sidebar-w:0px}.sidebar{transform:translateX(-260px)}.sidebar.open{transform:translateX(0);width:260px}.main-content{margin-left:0}.content-area{padding:20px 16px}.metrics-grid{grid-template-columns:1fr 1fr}}
-::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg-base)}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
-  </style>
+.lbtn{width:100%;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border:none;padding:14px;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Noto Sans',sans-serif;letter-spacing:1px;transition:all .25s;margin-top:5px;box-shadow:0 4px 20px rgba(192,57,43,.4)}
+.lbtn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(192,57,43,.55)}
+.lback{margin-top:20px;font-size:.82rem;color:var(--txt2)}.lback a{color:var(--gold);text-decoration:none}.lback a:hover{color:var(--gold3)}
+
+/* ── LAYOUT ── */
+#app{display:none;min-height:100vh}#app.on{display:flex}
+.sb{width:var(--sw);background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;transition:transform .3s}
+.sb-logo{padding:25px 24px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.sb-logo .icon{font-size:1.8rem}
+.sb-logo .name{font-family:'Noto Serif',serif;font-size:1.05rem;color:var(--gold3);line-height:1.2}
+.sb-logo .sub{font-size:.68rem;color:var(--txt2);letter-spacing:2px;text-transform:uppercase}
+.sb-nav{padding:16px 0;flex:1}
+.nav-sec{padding:0 12px;margin-bottom:8px}
+.nav-sec-lbl{font-size:.65rem;color:var(--txt3);letter-spacing:3px;text-transform:uppercase;padding:8px 12px 6px;display:block}
+.nl{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;color:var(--txt2);font-size:.9rem;transition:all .2s;cursor:pointer;border:none;background:none;width:100%;text-align:left}
+.nl:hover{background:var(--hover);color:var(--txt)}.nl.active{background:rgba(192,57,43,.15);color:var(--gold)}
+.nl .ni{font-size:1.1rem;width:22px;text-align:center}
+.nl .nb{margin-left:auto;background:var(--red);color:#fff;font-size:.65rem;padding:2px 7px;border-radius:20px;font-weight:700}
+.sb-foot{padding:16px 24px;border-top:1px solid var(--border)}
+.sb-user{display:flex;align-items:center;gap:10px}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1rem}
+.un{font-size:.88rem;color:var(--txt);font-weight:600}.ur{font-size:.72rem;color:var(--txt2)}
+.logout{margin-left:auto;background:none;border:none;cursor:pointer;font-size:1.1rem;opacity:.5;transition:opacity .2s}.logout:hover{opacity:1}
+.mc{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:var(--hh);background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 30px;position:sticky;top:0;z-index:50;gap:20px}
+.topbar-title{font-family:'Noto Serif',serif;font-size:1.15rem;color:var(--txt);flex:1}
+.topbar-acts{display:flex;gap:10px;align-items:center}
+.badge-admin{background:rgba(192,57,43,.15);border:1px solid var(--border-red);color:var(--red2);padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:600;letter-spacing:1px}
+.ibtn{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--txt2);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all .2s;text-decoration:none}
+.ibtn:hover{background:var(--hover);color:var(--txt);border-color:rgba(255,255,255,.12)}
+.ca{padding:30px;flex:1}
+.tab{display:none}.tab.on{display:block}
+
+/* ── METRICS ── */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px}
+.mc2{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;position:relative;overflow:hidden;transition:all .25s}
+.mc2:hover{border-color:rgba(255,255,255,.12);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.mc2::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0}
+.mc2.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold3))}.mc2.red::before{background:linear-gradient(90deg,var(--red),var(--red2))}.mc2.green::before{background:linear-gradient(90deg,#27ae60,var(--green))}.mc2.blue::before{background:linear-gradient(90deg,#2980b9,var(--blue))}.mc2.purple::before{background:linear-gradient(90deg,#8e44ad,#9b59b6)}
+.mc2-icon{font-size:1.5rem;margin-bottom:10px;display:block}
+.mc2-val{font-family:'Noto Serif',serif;font-size:2rem;font-weight:700;color:var(--txt);line-height:1;margin-bottom:4px}
+.mc2-lbl{font-size:.75rem;color:var(--txt2);letter-spacing:1px;text-transform:uppercase}
+.mc2-sub{position:absolute;top:18px;right:18px;font-size:.72rem;color:var(--txt3);background:rgba(255,255,255,.04);padding:3px 9px;border-radius:20px;border:1px solid var(--border)}
+
+/* ── TABLES ── */
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:22px}
+.tbl-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.tbl-ttl{font-family:'Noto Serif',serif;font-size:1rem;color:var(--txt);display:flex;align-items:center;gap:8px}
+.tbl-ctrl{display:flex;gap:10px;align-items:center}
+.si{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 13px;color:var(--txt);font-size:.82rem;outline:none;transition:border-color .2s;width:180px}
+.si:focus{border-color:var(--gold)}.si::placeholder{color:var(--txt3)}
+.fsel{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--txt);font-size:.82rem;outline:none;cursor:pointer}
+.fsel option{background:var(--card)}
+.dt{width:100%;border-collapse:collapse;font-size:.87rem}
+.dt th{padding:11px 18px;text-align:left;font-size:.7rem;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--border);background:rgba(255,255,255,.015);font-weight:600}
+.dt td{padding:13px 18px;border-bottom:1px solid var(--border);color:var(--txt2);transition:background .15s}
+.dt tr:last-child td{border-bottom:none}.dt tbody tr:hover td{background:var(--hover)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 11px;border-radius:20px;font-size:.72rem;font-weight:600}
+.b-open{background:rgba(46,204,113,.12);color:var(--green);border:1px solid rgba(46,204,113,.2)}
+.b-pend{background:rgba(212,160,23,.12);color:var(--gold2);border:1px solid rgba(212,160,23,.2)}
+.b-spec{background:rgba(192,57,43,.15);color:var(--red2);border:1px solid rgba(192,57,43,.25)}
+.b-norm{background:rgba(136,136,160,.1);color:var(--txt2);border:1px solid var(--border)}
+
+/* ── CHARTS ── */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
+@media(max-width:900px){.cgrid{grid-template-columns:1fr}}
+.ccard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px}
+.ccard-ttl{font-family:'Noto Serif',serif;font-size:.95rem;color:var(--txt);margin-bottom:18px}
+.brow{margin-bottom:12px}
+.blrow{display:flex;justify-content:space-between;margin-bottom:5px;font-size:.79rem}
+.blt{color:var(--txt2)}.blv{color:var(--txt);font-weight:600;font-family:'JetBrains Mono',monospace}
+.btrack{height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
+.bfill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.22,1,.36,1);min-width:4px}
+
+/* ── CONFIG PANEL ── */
+.cfg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
+@media(max-width:860px){.cfg-grid{grid-template-columns:1fr}}
+.cfg-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px}
+.cfg-ttl{font-family:'Noto Serif',serif;font-size:1rem;color:var(--txt);margin-bottom:18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);padding-bottom:12px}
+.cfg-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.cfg-row:last-child{border-bottom:none}
+.cfg-lbl{font-size:.88rem;color:var(--txt2)}
+.cfg-val{font-family:'JetBrains Mono',monospace;font-size:.88rem;color:var(--gold);background:rgba(212,160,23,.08);padding:4px 11px;border-radius:6px;border:1px solid rgba(212,160,23,.2)}
+/* Inputs */
+.cfg-input{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:.9rem;width:90px;outline:none;text-align:center;transition:border-color .2s}
+.cfg-input:focus{border-color:var(--gold)}
+.cfg-input-lg{width:140px;text-align:left}
+/* Ratio sliders */
+.ratio-table{width:100%;border-collapse:collapse}
+.ratio-table td{padding:8px 6px;vertical-align:middle}
+.ratio-table .rlbl{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--txt2);width:40px}
+.ratio-table .rslider{flex:1;width:100%}
+.ratio-table .rnum{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--gold3);width:28px;text-align:right}
+.ratio-table .rpct{font-size:.75rem;color:var(--txt3);width:38px;text-align:right}
+input[type=range]{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:rgba(255,255,255,.08);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gold);cursor:pointer;border:2px solid var(--gold3)}
+input[type=range]::-webkit-slider-thumb:hover{background:var(--gold3)}
+/* Toggle switch */
+.toggle-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-lbl{font-size:.88rem;color:var(--txt2);flex:1}
+.switch{position:relative;width:42px;height:22px;flex-shrink:0}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:rgba(255,255,255,.1);border-radius:22px;cursor:pointer;transition:background .3s}
+.slider::before{content:'';position:absolute;left:3px;top:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .3s}
+input:checked+.slider{background:var(--red)}
+input:checked+.slider::before{transform:translateX(20px)}
+/* Action buttons */
+.abtn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:9px;border:none;cursor:pointer;font-family:'Noto Sans',sans-serif;font-size:.85rem;font-weight:600;transition:all .2s;width:100%;justify-content:center;margin-top:12px}
+.abtn-red{background:rgba(192,57,43,.15);color:var(--red2);border:1px solid rgba(192,57,43,.3)}.abtn-red:hover{background:rgba(192,57,43,.3)}
+.abtn-gold{background:rgba(212,160,23,.12);color:var(--gold);border:1px solid rgba(212,160,23,.25)}.abtn-gold:hover{background:rgba(212,160,23,.25)}
+.abtn-green{background:rgba(46,204,113,.12);color:var(--green);border:1px solid rgba(46,204,113,.25)}.abtn-green:hover{background:rgba(46,204,113,.25)}
+.abtn-blue{background:rgba(52,152,219,.12);color:var(--blue);border:1px solid rgba(52,152,219,.25)}.abtn-blue:hover{background:rgba(52,152,219,.25)}
+.save-bar{position:sticky;bottom:0;left:0;right:0;background:rgba(11,12,20,.92);backdrop-filter:blur(12px);border-top:1px solid var(--border-gold);padding:16px 30px;display:none;align-items:center;justify-content:space-between;gap:16px;z-index:200}
+.save-bar.show{display:flex}
+.save-hint{font-size:.85rem;color:var(--gold2)}
+.save-acts{display:flex;gap:10px}
+.sbtn{padding:10px 24px;border-radius:9px;border:none;cursor:pointer;font-family:'Noto Sans',sans-serif;font-size:.88rem;font-weight:700;transition:all .2s}
+.sbtn-save{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;box-shadow:0 3px 12px rgba(192,57,43,.4)}.sbtn-save:hover{transform:translateY(-2px)}
+.sbtn-disc{background:rgba(255,255,255,.06);color:var(--txt2);border:1px solid var(--border)}.sbtn-disc:hover{background:rgba(255,255,255,.1)}
+/* Special env cards */
+.sp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.sp-card{background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.22);border-radius:10px;padding:14px 16px;transition:all .2s}
+.sp-card:hover{border-color:rgba(192,57,43,.45);transform:translateY(-2px)}
+.sp-num{font-size:.7rem;color:var(--txt3);margin-bottom:5px}.sp-disp{font-size:.83rem;color:var(--txt2);margin-bottom:3px}
+.sp-real{font-family:'Noto Serif',serif;font-size:1.45rem;font-weight:700;color:var(--gold3)}
+.sp-st{margin-top:7px}
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 18px;font-size:.87rem;color:var(--txt);box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:9999;transform:translateX(130%);transition:transform .4s cubic-bezier(.22,1,.36,1);display:flex;align-items:center;gap:10px;min-width:230px}
+.toast.show{transform:translateX(0)}.toast.s{border-left:3px solid var(--green)}.toast.e{border-left:3px solid var(--red2)}.toast.i{border-left:3px solid var(--gold)}
+@media(max-width:768px){:root{--sw:0px}.sb{transform:translateX(-260px)}.sb.open{transform:translateX(0);width:260px}.mc{margin-left:0}.ca{padding:18px 14px}.cfg-grid,.mgrid{grid-template-columns:1fr}}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+</style>
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
+<!-- ═══════════ LOGIN ═══════════ -->
 <div id="login-screen">
-  <div class="login-box">
-    <span class="login-logo">🔐</span>
-    <h1 class="login-title">Admin Dashboard</h1>
-    <p class="login-subtitle">Lì Xì Tết · Quản Trị</p>
+  <div class="lbox">
+    <span class="llogo">🔐</span>
+    <h1 class="ltitle">Admin Control Panel</h1>
+    <p class="lsub">Lì Xì Tết · Quản Trị Hệ Thống</p>
     <form id="login-form" novalidate>
-      <div class="login-field">
-        <label for="login-user">Tên đăng nhập</label>
-        <input type="text" id="login-user" placeholder="admin" autocomplete="username" required />
-      </div>
-      <div class="login-field">
-        <label for="login-pass">Mật khẩu</label>
-        <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" required />
-      </div>
-      <p class="login-error" id="login-error" role="alert"></p>
-      <button type="submit" class="login-btn">🔓 Đăng Nhập</button>
+      <div class="lfield"><label for="lu">Tên đăng nhập</label><input type="text" id="lu" placeholder="admin" autocomplete="username" required/></div>
+      <div class="lfield"><label for="lp">Mật khẩu</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password" required/></div>
+      <p class="lerr" id="lerr" role="alert"></p>
+      <button type="submit" class="lbtn">🔓 Đăng Nhập</button>
     </form>
-    <p class="login-back">← <a href="/">Quay về trang chơi</a></p>
+    <p class="lback">← <a href="/">Quay về trang chơi</a></p>
   </div>
 </div>
 
-<!-- ADMIN APP -->
-<div id="admin-app">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <span class="logo-icon">🧧</span>
-      <div>
-        <div class="logo-text">Lì Xì Admin</div>
-        <div class="logo-sub">Tết 2025</div>
+<!-- ═══════════ APP ═══════════ -->
+<div id="app">
+  <!-- SIDEBAR -->
+  <aside class="sb" id="sb">
+    <div class="sb-logo"><span class="icon">🧧</span><div><div class="name">Lì Xì Admin</div><div class="sub">Control Panel</div></div></div>
+    <nav class="sb-nav">
+      <div class="nav-sec">
+        <span class="nav-sec-lbl">Tổng quan</span>
+        <button class="nl active" data-tab="overview"><span class="ni">📊</span><span class="nlbl">Dashboard</span></button>
+        <button class="nl" data-tab="envelopes"><span class="ni">🧧</span><span class="nlbl">Phong bì</span><span class="nb" id="nb-spec">2</span></button>
       </div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section">
-        <div class="nav-section-label">Tổng quan</div>
-        <button class="nav-link active" data-tab="overview"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span></button>
-        <button class="nav-link" data-tab="envelopes"><span class="nav-icon">🧧</span><span class="nav-label">Phong bì</span><span class="nav-badge">2</span></button>
+      <div class="nav-sec">
+        <span class="nav-sec-lbl">⚙️ Cấu hình hệ thống</span>
+        <button class="nl" data-tab="config-ratio"><span class="ni">🎲</span><span class="nlbl">Tỉ lệ mệnh giá</span></button>
+        <button class="nl" data-tab="config-special"><span class="ni">⭐</span><span class="nlbl">Mệnh giá đặc biệt</span></button>
+        <button class="nl" data-tab="config-game"><span class="ni">🎮</span><span class="nlbl">Cài đặt game</span></button>
       </div>
-      <div class="nav-section">
-        <div class="nav-section-label">Phân tích</div>
-        <button class="nav-link" data-tab="analytics"><span class="nav-icon">📈</span><span class="nav-label">Thống kê</span></button>
-        <button class="nav-link" data-tab="special"><span class="nav-icon">⭐</span><span class="nav-label">Ô đặc biệt</span></button>
-      </div>
-      <div class="nav-section">
-        <div class="nav-section-label">Hệ thống</div>
-        <button class="nav-link" data-tab="settings"><span class="nav-icon">⚙️</span><span class="nav-label">Cài đặt</span></button>
+      <div class="nav-sec">
+        <span class="nav-sec-lbl">Báo cáo</span>
+        <button class="nl" data-tab="analytics"><span class="ni">📈</span><span class="nlbl">Thống kê</span></button>
+        <button class="nl" data-tab="log"><span class="ni">📋</span><span class="nlbl">Lịch sử</span></button>
       </div>
     </nav>
-    <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="user-avatar">A</div>
-        <div><div class="user-name">Admin</div><div class="user-role">Quản trị viên</div></div>
-        <button class="logout-btn" id="logout-btn" title="Đăng xuất">⏻</button>
+    <div class="sb-foot">
+      <div class="sb-user">
+        <div class="av">A</div>
+        <div><div class="un">Admin</div><div class="ur">Quản trị viên</div></div>
+        <button class="logout" id="logout-btn" title="Đăng xuất">⏻</button>
       </div>
     </div>
   </aside>
 
-  <main class="main-content">
-    <div class="top-bar">
-      <h2 class="top-bar-title" id="top-bar-title">Dashboard</h2>
-      <div class="top-bar-actions">
-        <span class="top-badge">🔒 ADMIN</span>
-        <button class="icon-btn" id="refresh-btn" title="Làm mới">↺</button>
-        <button class="icon-btn" id="export-btn" title="Xuất CSV">📥</button>
-        <a class="icon-btn" href="/" title="Trang chính">🏠</a>
+  <!-- MAIN -->
+  <main class="mc">
+    <div class="topbar">
+      <h2 class="topbar-title" id="topbar-title">Dashboard</h2>
+      <div class="topbar-acts">
+        <span class="badge-admin">🔒 ADMIN</span>
+        <button class="ibtn" id="refresh-btn" title="Làm mới">↺</button>
+        <button class="ibtn" id="export-btn" title="Xuất CSV">📥</button>
+        <a class="ibtn" href="/" target="_blank" title="Trang người chơi">🏠</a>
       </div>
     </div>
 
-    <div class="content-area">
+    <div class="ca">
 
-      <!-- TAB: OVERVIEW -->
-      <section class="tab-section active" id="tab-overview">
-        <div class="metrics-grid">
-          <div class="metric-card gold"><span class="metric-icon">🧧</span><div class="metric-value" id="m-total">20</div><div class="metric-label">Tổng số ô</div><span class="metric-sub">Cố định</span></div>
-          <div class="metric-card green"><span class="metric-icon">✅</span><div class="metric-value" id="m-opened">0</div><div class="metric-label">Đã mở</div></div>
-          <div class="metric-card blue"><span class="metric-icon">⏳</span><div class="metric-value" id="m-pending">20</div><div class="metric-label">Chưa mở</div></div>
-          <div class="metric-card red"><span class="metric-icon">⭐</span><div class="metric-value" id="m-special-opened">0/2</div><div class="metric-label">Ô đặc biệt mở</div></div>
+      <!-- ── TAB: OVERVIEW ── -->
+      <section class="tab on" id="tab-overview">
+        <div class="mgrid">
+          <div class="mc2 gold"><span class="mc2-icon">🧧</span><div class="mc2-val" id="m-total">20</div><div class="mc2-lbl">Tổng số ô</div><span class="mc2-sub" id="m-total-sub">Cố định</span></div>
+          <div class="mc2 green"><span class="mc2-icon">✅</span><div class="mc2-val" id="m-opened">0</div><div class="mc2-lbl">Đã mở</div></div>
+          <div class="mc2 blue"><span class="mc2-icon">⏳</span><div class="mc2-val" id="m-pending">20</div><div class="mc2-lbl">Chưa mở</div></div>
+          <div class="mc2 red"><span class="mc2-icon">⭐</span><div class="mc2-val" id="m-spec">0/2</div><div class="mc2-lbl">Ô đặc biệt đã mở</div></div>
+          <div class="mc2 purple"><span class="mc2-icon">💵</span><div class="mc2-val" id="m-disp">0k</div><div class="mc2-lbl">Tổng hiển thị</div></div>
+          <div class="mc2 gold"><span class="mc2-icon">💰</span><div class="mc2-val" id="m-real">0k</div><div class="mc2-lbl">Tổng thực tế</div></div>
+          <div class="mc2 blue"><span class="mc2-icon">📊</span><div class="mc2-val" id="m-pct">0%</div><div class="mc2-lbl">Tiến độ</div></div>
         </div>
-        <div class="metrics-grid" style="margin-bottom:28px">
-          <div class="metric-card purple"><span class="metric-icon">💵</span><div class="metric-value" id="m-display-total">0k</div><div class="metric-label">Tổng hiển thị</div></div>
-          <div class="metric-card gold"><span class="metric-icon">💰</span><div class="metric-value" id="m-real-total">0k</div><div class="metric-label">Tổng thực</div></div>
-          <div class="metric-card blue"><span class="metric-icon">📊</span><div class="metric-value" id="m-progress-pct">0%</div><div class="metric-label">Tiến độ</div></div>
+        <div class="cgrid">
+          <div class="ccard"><div class="ccard-ttl">📊 Phân phối mệnh giá thực</div><div id="c-dist"></div></div>
+          <div class="ccard"><div class="ccard-ttl">🎯 Tỉ lệ mở / chưa mở</div><div id="c-open"></div></div>
         </div>
-        <div class="chart-section">
-          <div class="chart-card"><div class="chart-card-title">📊 Phân phối mệnh giá thực</div><div id="chart-distribution"></div></div>
-          <div class="chart-card"><div class="chart-card-title">🎯 Tỉ lệ mở</div><div id="chart-open-rate"></div></div>
+        <div class="tbl-wrap">
+          <div class="tbl-head"><div class="tbl-ttl">⭐ Ô Đặc Biệt</div></div>
+          <div style="padding:18px 22px"><div class="sp-grid" id="sp-cards"></div></div>
         </div>
       </section>
 
-      <!-- TAB: ENVELOPES -->
-      <section class="tab-section" id="tab-envelopes">
-        <div class="table-section">
-          <div class="table-header">
-            <div class="table-title"><span>🧧</span> Danh sách phong bì</div>
-            <div class="table-controls">
-              <input type="search" class="search-input" id="env-search" placeholder="Tìm kiếm..." />
-              <select class="filter-select" id="env-filter">
-                <option value="all">Tất cả</option>
-                <option value="opened">Đã mở</option>
-                <option value="pending">Chưa mở</option>
-                <option value="special">Đặc biệt</option>
+      <!-- ── TAB: ENVELOPES ── -->
+      <section class="tab" id="tab-envelopes">
+        <div class="tbl-wrap">
+          <div class="tbl-head">
+            <div class="tbl-ttl">🧧 Danh sách phong bì</div>
+            <div class="tbl-ctrl">
+              <input type="search" class="si" id="env-search" placeholder="Tìm..."/>
+              <select class="fsel" id="env-filter">
+                <option value="all">Tất cả</option><option value="opened">Đã mở</option>
+                <option value="pending">Chưa mở</option><option value="special">Đặc biệt</option>
               </select>
             </div>
           </div>
-          <table class="data-table">
-            <thead><tr><th>ID</th><th>Loại</th><th>Hiển thị</th><th>Mệnh giá thực</th><th>Trạng thái</th><th>Thời gian</th><th>Thao tác</th></tr></thead>
-            <tbody id="env-tbody"></tbody>
+          <table class="dt"><thead><tr><th>ID</th><th>Loại</th><th>Hiển thị</th><th>Thực tế</th><th>Trạng thái</th><th>Thời gian</th><th>Thao tác</th></tr></thead>
+          <tbody id="env-tbody"></tbody></table>
+        </div>
+      </section>
+
+      <!-- ── TAB: CONFIG RATIO ── -->
+      <section class="tab" id="tab-config-ratio">
+        <div class="cfg-card" style="margin-bottom:18px">
+          <div class="cfg-ttl">🎲 Tỉ lệ phân phối mệnh giá hiển thị (1k–20k)</div>
+          <p style="font-size:.83rem;color:var(--txt2);margin-bottom:18px;line-height:1.7">Kéo slider để điều chỉnh số lượng từng mệnh giá trong tổng số ô. Tổng số ô = tổng tất cả số lượng.</p>
+          <table class="ratio-table" id="ratio-table">
+            <!-- Rendered by JS -->
           </table>
+          <div style="margin-top:16px;padding:12px 16px;background:rgba(212,160,23,.06);border:1px solid rgba(212,160,23,.2);border-radius:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+            <span style="font-size:.85rem;color:var(--txt2)">Tổng số ô hiện tại:</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--gold3)" id="ratio-total-display">20</span>
+          </div>
         </div>
+        <div class="cfg-card" style="margin-bottom:18px">
+          <div class="cfg-ttl">📐 Xem trước phân phối</div>
+          <div id="ratio-preview"></div>
+        </div>
+        <button class="abtn abtn-green" id="save-ratio-btn">💾 Lưu tỉ lệ mệnh giá</button>
       </section>
 
-      <!-- TAB: ANALYTICS -->
-      <section class="tab-section" id="tab-analytics">
-        <div class="chart-section">
-          <div class="chart-card"><div class="chart-card-title">📊 Chi tiết phân phối</div><div id="chart-distribution-2"></div></div>
-          <div class="chart-card"><div class="chart-card-title">🎯 Tỉ lệ mở</div><div id="chart-open-rate-2"></div></div>
+      <!-- ── TAB: CONFIG SPECIAL ── -->
+      <section class="tab" id="tab-config-special">
+        <div class="cfg-card" style="margin-bottom:18px">
+          <div class="cfg-ttl">⭐ Mệnh giá đặc biệt (ẩn với người chơi)</div>
+          <p style="font-size:.83rem;color:var(--txt2);margin-bottom:20px;line-height:1.7">Người chơi thấy mệnh giá bình thường, nhưng khi mở ô đặc biệt sẽ được gợi ý vào Admin để nhận thưởng giá trị cao hơn.</p>
+          <div id="special-inputs"><!-- Rendered by JS --></div>
+          <button class="abtn abtn-gold" id="add-special-btn">➕ Thêm mệnh giá đặc biệt</button>
         </div>
-        <div class="table-section">
-          <div class="table-header"><div class="table-title"><span>📋</span> Lịch sử bốc</div></div>
-          <table class="data-table">
-            <thead><tr><th>ID</th><th>Mệnh giá thực</th><th>Thời gian mở</th><th>Loại</th></tr></thead>
-            <tbody id="history-tbody"></tbody>
-          </table>
+        <div class="cfg-card" style="margin-bottom:18px">
+          <div class="cfg-ttl">🔢 Số ô đặc biệt</div>
+          <div class="cfg-row">
+            <span class="cfg-lbl">Số lượng ô đặc biệt trong game</span>
+            <input type="number" class="cfg-input" id="special-count" min="1" max="10" value="2"/>
+          </div>
+          <p style="font-size:.78rem;color:var(--txt3);margin-top:10px">Lưu ý: Số ô đặc biệt không nên vượt quá số mệnh giá đặc biệt đã nhập.</p>
         </div>
+        <button class="abtn abtn-green" id="save-special-btn">💾 Lưu mệnh giá đặc biệt</button>
       </section>
 
-      <!-- TAB: SPECIAL -->
-      <section class="tab-section" id="tab-special">
-        <div class="special-highlight">
-          <div class="special-highlight-title">⭐ Ô Đặc Biệt (50k &amp; 100k)</div>
-          <p style="font-size:.85rem;color:var(--text-secondary);margin-bottom:20px">Người chơi thấy mệnh giá 1–20k, nhưng giá trị thực cao hơn. Khi mở, hệ thống gợi ý truy cập /admin.</p>
-          <div class="special-cards-grid" id="special-cards"></div>
-        </div>
-        <div class="chart-card">
-          <div class="chart-card-title">ℹ️ Cơ chế hoạt động</div>
-          <div style="font-size:.88rem;color:var(--text-secondary);line-height:1.9">
-            <p>🔸 <strong style="color:var(--text-primary)">Mệnh giá hiển thị:</strong> Người chơi thấy 1k–20k ngẫu nhiên khi bốc.</p>
-            <p>🔸 <strong style="color:var(--text-primary)">Mệnh giá thực:</strong> 2 ô đặc biệt có giá trị thực là 50k và 100k — chỉ admin biết vị trí.</p>
-            <p>🔸 <strong style="color:var(--text-primary)">Khi mở ô đặc biệt:</strong> Hệ thống gợi ý truy cập <code style="color:var(--gold)">/admin</code> để biết mệnh giá thực.</p>
-            <p>🔸 <strong style="color:var(--text-primary)">Bảo mật:</strong> Trang admin yêu cầu đăng nhập để xem thông tin ẩn.</p>
+      <!-- ── TAB: CONFIG GAME ── -->
+      <section class="tab" id="tab-config-game">
+        <div class="cfg-grid">
+          <div class="cfg-card">
+            <div class="cfg-ttl">🎮 Thông tin game</div>
+            <div class="cfg-row"><span class="cfg-lbl">Tiêu đề trang</span><input type="text" class="cfg-input cfg-input-lg" id="g-title" value="Lì Xì Tết 2025"/></div>
+            <div class="cfg-row"><span class="cfg-lbl">Phụ đề</span><input type="text" class="cfg-input cfg-input-lg" id="g-sub" value="Chúc mừng năm mới · Vạn sự như ý"/></div>
+            <div class="cfg-row"><span class="cfg-lbl">Số confetti mỗi lần mở</span><input type="number" class="cfg-input" id="g-confetti" min="20" max="300" value="80"/></div>
+          </div>
+          <div class="cfg-card">
+            <div class="cfg-ttl">🔐 Tài khoản Admin</div>
+            <div class="cfg-row"><span class="cfg-lbl">Tên đăng nhập</span><input type="text" class="cfg-input cfg-input-lg" id="g-user" value="admin"/></div>
+            <div class="cfg-row"><span class="cfg-lbl">Mật khẩu mới</span><input type="password" class="cfg-input cfg-input-lg" id="g-pass" placeholder="Để trống = giữ nguyên"/></div>
+            <p style="font-size:.75rem;color:var(--txt3);margin-top:10px">⚠ Thay đổi mật khẩu sẽ có hiệu lực ngay lần sau đăng nhập.</p>
+          </div>
+          <div class="cfg-card">
+            <div class="cfg-ttl">🎛 Tính năng</div>
+            <div class="toggle-row"><span class="toggle-lbl">Hiệu ứng confetti</span><label class="switch"><input type="checkbox" id="f-confetti" checked/><span class="slider"></span></label></div>
+            <div class="toggle-row"><span class="toggle-lbl">Hoa rơi nền</span><label class="switch"><input type="checkbox" id="f-petals" checked/><span class="slider"></span></label></div>
+            <div class="toggle-row"><span class="toggle-lbl">Gợi ý Admin khi mở ô đặc biệt</span><label class="switch"><input type="checkbox" id="f-hint" checked/><span class="slider"></span></label></div>
+          </div>
+          <div class="cfg-card">
+            <div class="cfg-ttl">🛠 Thao tác hệ thống</div>
+            <button class="abtn abtn-gold" onclick="applyGameConfig()">💾 Lưu cài đặt game</button>
+            <button class="abtn abtn-red" id="reset-game-btn">🔄 Đặt lại toàn bộ game</button>
+            <button class="abtn abtn-blue" onclick="document.getElementById('export-btn').click()">📥 Xuất dữ liệu CSV</button>
+            <button class="abtn abtn-green" onclick="window.open('/','_blank')">🧧 Xem trang người chơi</button>
           </div>
         </div>
       </section>
 
-      <!-- TAB: SETTINGS -->
-      <section class="tab-section" id="tab-settings">
-        <div class="settings-grid">
-          <div class="settings-card">
-            <div class="settings-card-title">⚙️ Cấu hình game</div>
-            <div class="setting-row"><span class="setting-label">Tổng số ô</span><span class="setting-value" id="cfg-total">20</span></div>
-            <div class="setting-row"><span class="setting-label">Số ô đặc biệt</span><span class="setting-value" id="cfg-special">2</span></div>
-            <div class="setting-row"><span class="setting-label">Mệnh giá tối thiểu</span><span class="setting-value" id="cfg-min">1k</span></div>
-            <div class="setting-row"><span class="setting-label">Mệnh giá tối đa</span><span class="setting-value" id="cfg-max">20k</span></div>
-            <div class="setting-row"><span class="setting-label">Mệnh giá ẩn</span><span class="setting-value" id="cfg-hidden">50k, 100k</span></div>
-          </div>
-          <div class="settings-card">
-            <div class="settings-card-title">🛠 Thao tác</div>
-            <button class="action-btn action-btn-red" id="reset-game-btn">🔄 Đặt lại toàn bộ game</button>
-            <button class="action-btn action-btn-gold" onclick="document.getElementById('export-btn').click()">📥 Xuất dữ liệu CSV</button>
-            <button class="action-btn action-btn-blue" onclick="window.open('/','_blank')">🧧 Mở trang người chơi</button>
-          </div>
-          <div class="settings-card">
-            <div class="settings-card-title">🔐 Bảo mật</div>
-            <div class="setting-row"><span class="setting-label">Phiên đăng nhập</span><span class="setting-value">SessionStorage</span></div>
-            <div class="setting-row"><span class="setting-label">Lưu trữ</span><span class="setting-value">localStorage</span></div>
-            <div class="setting-row"><span class="setting-label">Route admin</span><span class="setting-value">/admin</span></div>
-            <button class="action-btn action-btn-red" onclick="document.getElementById('logout-btn').click()">⏻ Đăng xuất</button>
-          </div>
+      <!-- ── TAB: ANALYTICS ── -->
+      <section class="tab" id="tab-analytics">
+        <div class="cgrid">
+          <div class="ccard"><div class="ccard-ttl">📊 Phân phối mệnh giá thực</div><div id="c-dist2"></div></div>
+          <div class="ccard"><div class="ccard-ttl">🎯 Tỉ lệ mở</div><div id="c-open2"></div></div>
+        </div>
+        <div class="tbl-wrap">
+          <div class="tbl-head"><div class="tbl-ttl">📊 Thống kê theo mệnh giá</div></div>
+          <table class="dt"><thead><tr><th>Mệnh giá</th><th>Số ô</th><th>Đã mở</th><th>Tỉ lệ mở</th><th>Tổng tiền</th></tr></thead>
+          <tbody id="stat-tbody"></tbody></table>
         </div>
       </section>
 
+      <!-- ── TAB: LOG ── -->
+      <section class="tab" id="tab-log">
+        <div class="tbl-wrap">
+          <div class="tbl-head">
+            <div class="tbl-ttl">📋 Lịch sử bốc (mới nhất trước)</div>
+            <button class="ibtn" onclick="renderLog()" title="Làm mới">↺</button>
+          </div>
+          <table class="dt"><thead><tr><th>STT</th><th>Ô #</th><th>Hiển thị</th><th>Thực tế</th><th>Loại</th><th>Thời gian</th></tr></thead>
+          <tbody id="log-tbody"></tbody>
+        </div>
+      </section>
+
+    </div><!-- /ca -->
+
+    <!-- SAVE BAR -->
+    <div class="save-bar" id="save-bar">
+      <span class="save-hint">⚡ Có thay đổi chưa lưu — Game sẽ dùng cấu hình mới sau khi Chơi Lại.</span>
+      <div class="save-acts">
+        <button class="sbtn sbtn-disc" id="discard-btn">Hủy</button>
+        <button class="sbtn sbtn-save" id="save-btn">💾 Lưu & Áp dụng</button>
+      </div>
     </div>
   </main>
 </div>
@@ -321,34 +377,327 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg-base);color:var(--te
 
 <script>
 'use strict';
-const ADMIN={username:'admin',password:'lixì2025',sessionKey:'lixì_admin_auth'};
-const DATA_KEY='lixì_game_data';
+// ── CONSTANTS ──
+const STORE_CONFIG='lixi_config';
+const STORE_GAME='lixi_game_data';
+const STORE_ADMIN='lixi_admin_auth';
+const DEF={totalEnvelopes:20,title:'Lì Xì Tết 2025',subtitle:'Chúc mừng năm mới · Vạn sự như ý',distribution:{1:2,2:2,3:2,5:3,10:4,15:2,20:5},specialValues:[50,100],specialCount:2,confettiCount:80,adminUser:'admin',adminPass:'lixì2025',features:{confetti:true,petals:true,hint:true}};
+
+// ── ADMIN CREDS (stored in sessionStorage, default from config) ──
+let ADMIN_USER='admin',ADMIN_PASS='lixì2025';
+function loadAdminCreds(){const c=loadCfg();ADMIN_USER=c.adminUser||DEF.adminUser;ADMIN_PASS=c.adminPass||DEF.adminPass}
+
+// ── CONFIG ──
+function loadCfg(){try{const r=localStorage.getItem(STORE_CONFIG);if(r)return Object.assign({},DEF,JSON.parse(r))}catch{}return Object.assign({},DEF)}
+function saveCfg(c){localStorage.setItem(STORE_CONFIG,JSON.stringify(c))}
+
+// ── GAME DATA ──
+function loadGame(){try{const r=localStorage.getItem(STORE_GAME);if(r)return JSON.parse(r)}catch{}return[]}
+function saveGame(d){localStorage.setItem(STORE_GAME,JSON.stringify(d))}
+
+// ── SESSION ──
+function checkSess(){return sessionStorage.getItem(STORE_ADMIN)==='1'}
+function saveSess(){sessionStorage.setItem(STORE_ADMIN,'1')}
+function clearSess(){sessionStorage.removeItem(STORE_ADMIN)}
+
+// ── PENDING CONFIG (before save) ──
+let pendingCfg=null;
+function getPending(){return pendingCfg||loadCfg()}
+function markDirty(){pendingCfg=pendingCfg||Object.assign({},loadCfg());document.getElementById('save-bar').classList.add('show')}
+
+// ── DOM ──
 const loginScreen=document.getElementById('login-screen');
-const adminApp=document.getElementById('admin-app');
-const loginError=document.getElementById('login-error');
-const loginForm=document.getElementById('login-form');
-function checkSession(){return sessionStorage.getItem(ADMIN.sessionKey)==='true'}
-function saveSession(){sessionStorage.setItem(ADMIN.sessionKey,'true')}
-function clearSession(){sessionStorage.removeItem(ADMIN.sessionKey)}
-function loadGameData(){const r=localStorage.getItem(DATA_KEY);if(!r)return generateDemoData();try{return JSON.parse(r)}catch{return generateDemoData()}}
-function generateDemoData(){const v=[1,2,2,3,3,5,5,5,10,10,10,10,15,15,20,20,20,20,20,20];const s=[...v].sort(()=>Math.random()-.5);const sp=[];while(sp.length<2){const r=Math.floor(Math.random()*20);if(!sp.includes(r))sp.push(r)}const sv=[50,100].sort(()=>Math.random()-.5);return Array.from({length:20},(_,i)=>{const isSp=sp.includes(i);const si=sp.indexOf(i);const opened=Math.random()>.55;return{id:i+1,displayValue:s[i],realValue:isSp?sv[si]:s[i],isSpecial:isSp,opened,openedAt:opened?new Date(Date.now()-Math.random()*3600000).toISOString():null}})}
-function saveDemoData(d){localStorage.setItem(DATA_KEY,JSON.stringify(d))}
-document.addEventListener('DOMContentLoaded',()=>{if(checkSession())showDashboard();else{loginScreen.classList.remove('hidden')}});
-loginForm.addEventListener('submit',e=>{e.preventDefault();const u=document.getElementById('login-user').value.trim();const p=document.getElementById('login-pass').value;if(u===ADMIN.username&&p===ADMIN.password){loginError.textContent='';loginScreen.classList.add('hidden');saveSession();showDashboard()}else{loginError.textContent='⚠ Sai tên đăng nhập hoặc mật khẩu!';loginError.classList.remove('shake');void loginError.offsetWidth;loginError.classList.add('shake');document.getElementById('login-pass').value='';document.getElementById('login-pass').focus()}});
+const appEl=document.getElementById('app');
+const lerrEl=document.getElementById('lerr');
+
+// ── BOOT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  loadAdminCreds();
+  if(checkSess())showApp();
+  document.getElementById('login-form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const u=document.getElementById('lu').value.trim();
+    const p=document.getElementById('lp').value;
+    loadAdminCreds();
+    if(u===ADMIN_USER&&p===ADMIN_PASS){lerrEl.textContent='';loginScreen.classList.add('hidden');saveSess();showApp()}
+    else{lerrEl.textContent='⚠ Sai tên đăng nhập hoặc mật khẩu!';lerrEl.classList.remove('shake');void lerrEl.offsetWidth;lerrEl.classList.add('shake');document.getElementById('lp').value='';document.getElementById('lp').focus()}
+  });
+});
+
 let gameData=[];
-function showDashboard(){adminApp.classList.add('visible');gameData=loadGameData();saveDemoData(gameData);renderMetrics();renderEnvelopeTable();renderSpecialHighlight();renderCharts();renderSettings();setupNav();setupControls()}
-function renderMetrics(){const tot=gameData.length;const op=gameData.filter(e=>e.opened).length;const sp=gameData.filter(e=>e.isSpecial);const spOp=sp.filter(e=>e.opened).length;const totDisp=gameData.filter(e=>e.opened).reduce((s,e)=>s+e.displayValue,0);const totReal=gameData.filter(e=>e.opened).reduce((s,e)=>s+e.realValue,0);document.getElementById('m-total').textContent=tot;document.getElementById('m-opened').textContent=op;document.getElementById('m-pending').textContent=tot-op;document.getElementById('m-special-opened').textContent=spOp+'/'+sp.length;document.getElementById('m-display-total').textContent=totDisp+'k';document.getElementById('m-real-total').textContent=totReal+'k';document.getElementById('m-progress-pct').textContent=Math.round(op/tot*100)+'%'}
-function renderEnvelopeTable(fv='all',sv=''){const tb=document.getElementById('env-tbody');tb.innerHTML='';let d=[...gameData];if(fv==='opened')d=d.filter(e=>e.opened);if(fv==='pending')d=d.filter(e=>!e.opened);if(fv==='special')d=d.filter(e=>e.isSpecial);if(sv){const s=sv.toLowerCase();d=d.filter(e=>String(e.id).includes(s)||String(e.displayValue).includes(s)||String(e.realValue).includes(s))}d.forEach(env=>{const tr=document.createElement('tr');tr.innerHTML=`<td style="font-family:'JetBrains Mono',monospace;color:var(--text-primary)">#${String(env.id).padStart(2,'0')}</td><td><span class="badge ${env.isSpecial?'badge-special':'badge-normal'}">${env.isSpecial?'🔥 Đặc biệt':'📦 Thường'}</span></td><td style="font-family:'JetBrains Mono',monospace">${env.displayValue}k</td><td style="font-family:'JetBrains Mono',monospace;color:${env.isSpecial?'var(--gold-shine)':'var(--text-secondary)'}">${env.realValue}k ${env.isSpecial?'⭐':''}</td><td><span class="badge ${env.opened?'badge-opened':'badge-pending'}">${env.opened?'✓ Đã mở':'○ Chờ'}</span></td><td style="font-size:.8rem;color:var(--text-muted)">${env.openedAt?new Date(env.openedAt).toLocaleTimeString('vi-VN'):'—'}</td><td><button class="icon-btn" onclick="toggleEnv(${env.id-1})">${env.opened?'↺':'✓'}</button></td>`;tb.appendChild(tr)});if(d.length===0)tb.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:30px">Không có dữ liệu</td></tr>'}
-function renderSpecialHighlight(){const c=document.getElementById('special-cards');c.innerHTML='';gameData.filter(e=>e.isSpecial).forEach(env=>{const card=document.createElement('div');card.className='special-env-card';card.innerHTML=`<div class="senv-num">Ô số #${String(env.id).padStart(2,'0')}</div><div class="senv-display">Hiển thị: ${env.displayValue}k</div><div class="senv-real">${env.realValue}k 🏆</div><div class="senv-status"><span class="badge ${env.opened?'badge-opened':'badge-pending'}">${env.opened?'✓ Đã được bốc':'○ Chưa mở'}</span></div>`;c.appendChild(card)})}
-function renderCharts(){const dist={1:0,2:0,3:0,5:0,10:0,15:0,20:0,50:0,100:0};gameData.forEach(e=>{if(dist[e.realValue]!==undefined)dist[e.realValue]++;else dist[e.realValue]=1});const dc=document.getElementById('chart-distribution');dc.innerHTML='';const mx=Math.max(...Object.values(dist));const colors={1:'#8888a0',2:'#8888a0',3:'#8888a0',5:'#3498db',10:'#3498db',15:'#9b59b6',20:'#e67e22',50:'#e74c3c',100:'#ffd700'};Object.entries(dist).forEach(([v,c])=>{if(c===0)return;const row=document.createElement('div');row.className='bar-row';row.innerHTML=`<div class="bar-label-row"><span class="bar-label-text">${v}k</span><span class="bar-label-val">${c} ô</span></div><div class="bar-track"><div class="bar-fill" style="width:0%;background:${colors[v]||'#8888a0'}" data-w="${c/mx*100}"></div></div>`;dc.appendChild(row)});const op=gameData.filter(e=>e.opened).length;const pend=gameData.length-op;const oc=document.getElementById('chart-open-rate');oc.innerHTML=`<div class="bar-row"><div class="bar-label-row"><span class="bar-label-text">Đã mở</span><span class="bar-label-val">${op}</span></div><div class="bar-track"><div class="bar-fill" style="width:0%;background:linear-gradient(90deg,#27ae60,#2ecc71)" data-w="${op/20*100}"></div></div></div><div class="bar-row"><div class="bar-label-row"><span class="bar-label-text">Chưa mở</span><span class="bar-label-val">${pend}</span></div><div class="bar-track"><div class="bar-fill" style="width:0%;background:linear-gradient(90deg,#d4a017,#f1c40f)" data-w="${pend/20*100}"></div></div></div>`;setTimeout(()=>{document.querySelectorAll('.bar-fill').forEach(el=>{el.style.width=el.dataset.w+'%'})},200)}
-function renderSettings(){const sp=gameData.filter(e=>e.isSpecial);const s=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};s('cfg-total',gameData.length);s('cfg-special',sp.length);s('cfg-min','1k');s('cfg-max','20k');s('cfg-hidden',sp.map(e=>e.realValue+'k').join(', '))}
-function setupNav(){document.querySelectorAll('[data-tab]').forEach(link=>{link.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(l=>l.classList.remove('active'));link.classList.add('active');const tab=link.dataset.tab;document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));const t=document.getElementById('tab-'+tab);if(t)t.classList.add('active');document.getElementById('top-bar-title').textContent=link.querySelector('.nav-label')?.textContent||'Dashboard';if(tab==='analytics')renderHistory()})})}
-function setupControls(){const search=document.getElementById('env-search');const filter=document.getElementById('env-filter');if(search)search.addEventListener('input',()=>renderEnvelopeTable(filter?.value,search.value));if(filter)filter.addEventListener('change',()=>renderEnvelopeTable(filter.value,search?.value));document.getElementById('logout-btn')?.addEventListener('click',()=>{clearSession();window.location.reload()});document.getElementById('reset-game-btn')?.addEventListener('click',()=>{if(confirm('Đặt lại toàn bộ game?')){gameData.forEach(e=>{e.opened=false;e.openedAt=null});saveDemoData(gameData);renderMetrics();renderEnvelopeTable();renderSpecialHighlight();renderCharts();showToast('✓ Đã đặt lại game','success')}});document.getElementById('refresh-btn')?.addEventListener('click',()=>{gameData=loadGameData();renderMetrics();renderEnvelopeTable();renderSpecialHighlight();renderCharts();showToast('↺ Đã làm mới dữ liệu','info')});document.getElementById('export-btn')?.addEventListener('click',exportCSV)}
-window.toggleEnv=function(idx){if(idx<0||idx>=gameData.length)return;gameData[idx].opened=!gameData[idx].opened;gameData[idx].openedAt=gameData[idx].opened?new Date().toISOString():null;saveDemoData(gameData);renderMetrics();renderEnvelopeTable(document.getElementById('env-filter')?.value,document.getElementById('env-search')?.value);renderSpecialHighlight();renderCharts();showToast(`${gameData[idx].opened?'✓ Đánh dấu đã mở':'↺ Đặt lại'} ô #${String(gameData[idx].id).padStart(2,'0')}`,'success')}
-function renderHistory(){const tb=document.getElementById('history-tbody');if(!tb)return;const opened=gameData.filter(e=>e.opened&&e.openedAt).sort((a,b)=>new Date(a.openedAt)-new Date(b.openedAt));tb.innerHTML=opened.map(e=>`<tr><td style="font-family:'JetBrains Mono',monospace;color:var(--text-primary)">#${String(e.id).padStart(2,'0')}</td><td style="font-family:'JetBrains Mono',monospace;color:${e.isSpecial?'var(--gold-shine)':'var(--text-primary)'}">${e.realValue}k ${e.isSpecial?'⭐':''}</td><td style="font-size:.82rem;color:var(--text-muted)">${new Date(e.openedAt).toLocaleString('vi-VN')}</td><td><span class="badge ${e.isSpecial?'badge-special':'badge-normal'}">${e.isSpecial?'🔥 Đặc biệt':'📦 Thường'}</span></td></tr>`).join('');if(opened.length===0)tb.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:30px">Chưa có ô nào được mở</td></tr>'}
-function exportCSV(){const h=['ID','Loại','Mệnh giá hiển thị','Mệnh giá thực','Trạng thái','Thời gian mở'];const rows=gameData.map(e=>['#'+String(e.id).padStart(2,'0'),e.isSpecial?'Đặc biệt':'Thường',e.displayValue+'k',e.realValue+'k',e.opened?'Đã mở':'Chưa mở',e.openedAt?new Date(e.openedAt).toLocaleString('vi-VN'):'—']);const csv=[h,...rows].map(r=>r.join(',')).join('\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`lixi-data-${new Date().toLocaleDateString('vi-VN').replaceAll('/','-')}.csv`;a.click();showToast('📥 Đã xuất CSV','success')}
-const toastEl=document.getElementById('toast');let toastTimer;
-function showToast(msg,type='info'){if(!toastEl)return;toastEl.textContent=msg;toastEl.className=`toast ${type} show`;clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove('show'),3000)}
+function showApp(){
+  appEl.classList.add('on');
+  gameData=loadGame();
+  if(!gameData.length)gameData=genDemoData();
+  populateConfigForms();
+  renderAll();
+  setupNav();
+  setupControls();
+}
+
+// ── DEMO DATA ──
+function genDemoData(){
+  const cfg=loadCfg();let pool=[];
+  Object.entries(cfg.distribution).forEach(([v,q])=>{for(let i=0;i<q;i++)pool.push(Number(v))});
+  const total=cfg.totalEnvelopes;
+  while(pool.length<total)pool.push(pool[Math.floor(Math.random()*pool.length)]);
+  pool=shuffle(pool.slice(0,total));
+  const sc=Math.min(cfg.specialCount,total);
+  const sl=shuffle(Array.from({length:total},(_,i)=>i)).slice(0,sc);
+  const sv=shuffle([...cfg.specialValues]).slice(0,sc);
+  const data=Array.from({length:total},(_,i)=>{const isSp=sl.includes(i);const si=sl.indexOf(i);const opened=Math.random()>.5;return{id:i+1,displayValue:pool[i],realValue:isSp?sv[si]:pool[i],isSpecial:isSp,opened,openedAt:opened?new Date(Date.now()-Math.random()*3.6e6).toISOString():null}});
+  saveGame(data);return data;
+}
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+
+// ── RENDER ALL ──
+function renderAll(){
+  renderMetrics();renderEnvTable();renderSpecialCards();renderCharts('c-dist','c-open');renderStatTable();
+}
+
+// ── METRICS ──
+function renderMetrics(){
+  const cfg=loadCfg();
+  const tot=gameData.length||cfg.totalEnvelopes;
+  const op=gameData.filter(e=>e.opened).length;
+  const sp=gameData.filter(e=>e.isSpecial);
+  const spOp=sp.filter(e=>e.opened).length;
+  const totD=gameData.filter(e=>e.opened).reduce((s,e)=>s+e.displayValue,0);
+  const totR=gameData.filter(e=>e.opened).reduce((s,e)=>s+e.realValue,0);
+  const s=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  s('m-total',tot);s('m-opened',op);s('m-pending',tot-op);s('m-spec',spOp+'/'+sp.length);
+  s('m-disp',totD+'k');s('m-real',totR+'k');s('m-pct',Math.round(op/Math.max(tot,1)*100)+'%');
+  s('nb-spec',sp.length);
+}
+
+// ── ENVELOPE TABLE ──
+function renderEnvTable(fv='all',sv=''){
+  const tb=document.getElementById('env-tbody');tb.innerHTML='';
+  let d=[...gameData];
+  if(fv==='opened')d=d.filter(e=>e.opened);
+  if(fv==='pending')d=d.filter(e=>!e.opened);
+  if(fv==='special')d=d.filter(e=>e.isSpecial);
+  if(sv){const s=sv.toLowerCase();d=d.filter(e=>String(e.id).includes(s)||String(e.displayValue).includes(s)||String(e.realValue).includes(s))}
+  d.forEach(env=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td style="font-family:'JetBrains Mono',monospace;color:var(--txt)">#${String(env.id).padStart(2,'0')}</td><td><span class="badge ${env.isSpecial?'b-spec':'b-norm'}">${env.isSpecial?'🔥 Đặc biệt':'📦 Thường'}</span></td><td style="font-family:'JetBrains Mono',monospace">${env.displayValue}k</td><td style="font-family:'JetBrains Mono',monospace;color:${env.isSpecial?'var(--gold3)':'var(--txt2)'}">${env.realValue}k${env.isSpecial?' ⭐':''}</td><td><span class="badge ${env.opened?'b-open':'b-pend'}">${env.opened?'✓ Đã mở':'○ Chờ'}</span></td><td style="font-size:.78rem;color:var(--txt3)">${env.openedAt?new Date(env.openedAt).toLocaleString('vi-VN'):'—'}</td><td><button class="ibtn" onclick="toggleEnv(${env.id-1})" title="${env.opened?'Đặt lại':'Đánh dấu'}">${env.opened?'↺':'✓'}</button></td>`;
+  tb.appendChild(tr)});
+  if(!d.length)tb.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--txt3);padding:28px">Không có dữ liệu</td></tr>';
+}
+window.toggleEnv=function(i){
+  if(i<0||i>=gameData.length)return;
+  gameData[i].opened=!gameData[i].opened;gameData[i].openedAt=gameData[i].opened?new Date().toISOString():null;
+  saveGame(gameData);renderAll();toast(`${gameData[i].opened?'✓ Đã mở':'↺ Đặt lại'} ô #${String(gameData[i].id).padStart(2,'0')}`,'s');
+};
+
+// ── SPECIAL CARDS ──
+function renderSpecialCards(){
+  const c=document.getElementById('sp-cards');c.innerHTML='';
+  gameData.filter(e=>e.isSpecial).forEach(env=>{
+    const card=document.createElement('div');card.className='sp-card';
+    card.innerHTML=`<div class="sp-num">Ô #${String(env.id).padStart(2,'0')}</div><div class="sp-disp">Hiển thị: ${env.displayValue}k</div><div class="sp-real">${env.realValue}k 🏆</div><div class="sp-st"><span class="badge ${env.opened?'b-open':'b-pend'}">${env.opened?'✓ Đã được bốc':'○ Chưa mở'}</span></div>`;
+    c.appendChild(card);
+  });
+  if(!gameData.filter(e=>e.isSpecial).length)c.innerHTML='<p style="color:var(--txt3);font-size:.88rem">Chưa có dữ liệu game. Người chơi cần bắt đầu game trước.</p>';
+}
+
+// ── CHARTS ──
+const DIST_COLORS={1:'#8888a0',2:'#8888a0',3:'#8888a0',5:'#3498db',10:'#3498db',15:'#9b59b6',20:'#e67e22',50:'#e74c3c',100:'#ffd700'};
+function renderCharts(dc,oc){
+  const dist={};gameData.forEach(e=>{dist[e.realValue]=(dist[e.realValue]||0)+1});
+  const dEl=document.getElementById(dc);dEl.innerHTML='';
+  const mx=Math.max(...Object.values(dist),1);
+  Object.entries(dist).sort((a,b)=>Number(a[0])-Number(b[0])).forEach(([v,c])=>{
+    const row=document.createElement('div');row.className='brow';
+    row.innerHTML=`<div class="blrow"><span class="blt">${v}k</span><span class="blv">${c} ô (${Math.round(c/gameData.length*100)}%)</span></div><div class="btrack"><div class="bfill" style="width:0%;background:${DIST_COLORS[v]||'#8888a0'}" data-w="${c/mx*100}"></div></div>`;
+    dEl.appendChild(row);
+  });
+  const op=gameData.filter(e=>e.opened).length;const pend=gameData.length-op;
+  const oEl=document.getElementById(oc);oEl.innerHTML=`<div class="brow"><div class="blrow"><span class="blt">Đã mở</span><span class="blv">${op} ô (${Math.round(op/Math.max(gameData.length,1)*100)}%)</span></div><div class="btrack"><div class="bfill" style="width:0%;background:linear-gradient(90deg,#27ae60,#2ecc71)" data-w="${op/Math.max(gameData.length,1)*100}"></div></div></div><div class="brow"><div class="blrow"><span class="blt">Chưa mở</span><span class="blv">${pend} ô (${Math.round(pend/Math.max(gameData.length,1)*100)}%)</span></div><div class="btrack"><div class="bfill" style="width:0%;background:linear-gradient(90deg,#d4a017,#f1c40f)" data-w="${pend/Math.max(gameData.length,1)*100}"></div></div></div>`;
+  setTimeout(()=>document.querySelectorAll('.bfill').forEach(el=>{el.style.width=el.dataset.w+'%'}),150);
+}
+
+// ── STAT TABLE ──
+function renderStatTable(){
+  const tb=document.getElementById('stat-tbody');tb.innerHTML='';
+  const vals={};gameData.forEach(e=>{if(!vals[e.realValue])vals[e.realValue]={total:0,opened:0};vals[e.realValue].total++;if(e.opened)vals[e.realValue].opened++});
+  Object.entries(vals).sort((a,b)=>Number(a[0])-Number(b[0])).forEach(([v,d])=>{
+    const tr=document.createElement('tr');const pct=Math.round(d.opened/d.total*100);
+    tr.innerHTML=`<td style="font-family:'JetBrains Mono',monospace;color:var(--gold3)">${v}k</td><td>${d.total}</td><td>${d.opened}</td><td><div style="display:flex;align-items:center;gap:8px"><div style="width:80px;height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden"><div style="width:${pct}%;height:100%;background:var(--green);border-radius:3px"></div></div><span style="font-size:.78rem">${pct}%</span></div></td><td style="font-family:'JetBrains Mono',monospace">${v*d.opened}k</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+// ── LOG ──
+function renderLog(){
+  const tb=document.getElementById('log-tbody');tb.innerHTML='';
+  const opened=gameData.filter(e=>e.opened&&e.openedAt).sort((a,b)=>new Date(b.openedAt)-new Date(a.openedAt));
+  opened.forEach((e,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td style="color:var(--txt3)">${i+1}</td><td style="font-family:'JetBrains Mono',monospace;color:var(--txt)">#${String(e.id).padStart(2,'0')}</td><td style="font-family:'JetBrains Mono',monospace">${e.displayValue}k</td><td style="font-family:'JetBrains Mono',monospace;color:${e.isSpecial?'var(--gold3)':'var(--txt2)'}">${e.realValue}k${e.isSpecial?' ⭐':''}</td><td><span class="badge ${e.isSpecial?'b-spec':'b-norm'}">${e.isSpecial?'🔥 Đặc biệt':'📦 Thường'}</span></td><td style="font-size:.78rem;color:var(--txt3)">${new Date(e.openedAt).toLocaleString('vi-VN')}</td>`;tb.appendChild(tr)});
+  if(!opened.length)tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--txt3);padding:28px">Chưa có ô nào được mở</td></tr>';
+}
+
+// ══════════════════════════════════════════
+//  CONFIG FORMS
+// ══════════════════════════════════════════
+const RATIO_VALUES=[1,2,3,5,10,15,20];
+let ratioState={};
+
+function populateConfigForms(){
+  const cfg=loadCfg();
+  // Ratio
+  RATIO_VALUES.forEach(v=>{ratioState[v]=cfg.distribution[v]||0});
+  renderRatioTable();
+  // Special values
+  renderSpecialInputs(cfg.specialValues||[50,100]);
+  document.getElementById('special-count').value=cfg.specialCount||2;
+  // Game settings
+  document.getElementById('g-title').value=cfg.title||DEF.title;
+  document.getElementById('g-sub').value=cfg.subtitle||DEF.subtitle;
+  document.getElementById('g-confetti').value=cfg.confettiCount||80;
+  document.getElementById('g-user').value=cfg.adminUser||'admin';
+  // Features
+  const f=cfg.features||DEF.features;
+  document.getElementById('f-confetti').checked=f.confetti!==false;
+  document.getElementById('f-petals').checked=f.petals!==false;
+  document.getElementById('f-hint').checked=f.hint!==false;
+}
+
+function renderRatioTable(){
+  const tbl=document.getElementById('ratio-table');tbl.innerHTML='';
+  let total=0;Object.values(ratioState).forEach(v=>total+=v);
+  RATIO_VALUES.forEach(val=>{
+    const qty=ratioState[val]||0;total=total||1;
+    const pct=Math.round(qty/total*100);
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="rlbl">${val}k</td><td style="padding:8px"><input type="range" class="rslider" min="0" max="20" value="${qty}" data-val="${val}" oninput="updateRatio(${val},this.value)"/></td><td class="rnum" id="rnum-${val}">${qty}</td><td class="rpct" id="rpct-${val}">${pct}%</td>`;
+    tbl.appendChild(tr);
+  });
+  updateRatioTotal();
+  renderRatioPreview();
+}
+
+function updateRatio(val,qty){
+  ratioState[val]=parseInt(qty)||0;
+  const n=document.getElementById('rnum-'+val);if(n)n.textContent=qty;
+  updateRatioTotal();renderRatioPreview();
+  markDirty();
+}
+
+function updateRatioTotal(){
+  let tot=0;Object.values(ratioState).forEach(v=>tot+=v);
+  const el=document.getElementById('ratio-total-display');if(el)el.textContent=tot;
+  // Update pct
+  RATIO_VALUES.forEach(val=>{
+    const p=document.getElementById('rpct-'+val);if(p)p.textContent=(tot>0?Math.round((ratioState[val]||0)/tot*100):0)+'%';
+  });
+}
+
+function renderRatioPreview(){
+  const c=document.getElementById('ratio-preview');c.innerHTML='';
+  let tot=0;Object.values(ratioState).forEach(v=>tot+=v);
+  if(tot===0){c.innerHTML='<p style="color:var(--txt3);font-size:.85rem">Tất cả đều bằng 0</p>';return}
+  RATIO_VALUES.forEach(val=>{
+    const qty=ratioState[val]||0;if(qty===0)return;
+    const pct=qty/tot*100;
+    const row=document.createElement('div');row.className='brow';
+    row.innerHTML=`<div class="blrow"><span class="blt">${val}k</span><span class="blv">${qty} ô · ${Math.round(pct)}%</span></div><div class="btrack"><div style="width:${pct}%;height:8px;border-radius:4px;background:${DIST_COLORS[val]||'#8888a0'}"></div></div>`;
+    c.appendChild(row);
+  });
+}
+
+function saveRatioConfig(){
+  const cfg=loadCfg();let tot=0;Object.values(ratioState).forEach(v=>tot+=v);
+  if(tot===0){toast('⚠ Tổng số ô phải > 0','e');return}
+  cfg.distribution={...ratioState};cfg.totalEnvelopes=tot;saveCfg(cfg);
+  toast('✓ Đã lưu tỉ lệ mệnh giá! Nhấn "Chơi Lại" để áp dụng.','s');
+  hideSaveBar();
+}
+
+// Special inputs
+let specialList=[50,100];
+function renderSpecialInputs(vals){
+  specialList=[...vals];
+  const c=document.getElementById('special-inputs');c.innerHTML='';
+  specialList.forEach((v,i)=>{
+    const row=document.createElement('div');row.className='cfg-row';
+    row.innerHTML=`<span class="cfg-lbl">Mệnh giá đặc biệt #${i+1}</span><div style="display:flex;gap:8px;align-items:center"><input type="number" class="cfg-input" value="${v}" min="1" max="9999" onchange="updateSpecial(${i},this.value)"/><button class="ibtn" style="color:var(--red2)" onclick="removeSpecial(${i})" title="Xóa">✕</button></div>`;
+    c.appendChild(row);
+  });
+}
+function updateSpecial(i,v){specialList[i]=parseInt(v)||0;markDirty()}
+function removeSpecial(i){specialList.splice(i,1);renderSpecialInputs(specialList);markDirty()}
+document.getElementById('add-special-btn')?.addEventListener('click',()=>{specialList.push(50);renderSpecialInputs(specialList);markDirty()});
+function saveSpecialConfig(){
+  const cfg=loadCfg();
+  cfg.specialValues=specialList.filter(v=>v>0);
+  cfg.specialCount=parseInt(document.getElementById('special-count').value)||2;
+  saveCfg(cfg);toast('✓ Đã lưu mệnh giá đặc biệt! Nhấn "Chơi Lại" để áp dụng.','s');hideSaveBar();
+}
+
+// Game config
+function applyGameConfig(){
+  const cfg=loadCfg();
+  cfg.title=document.getElementById('g-title').value||DEF.title;
+  cfg.subtitle=document.getElementById('g-sub').value||DEF.subtitle;
+  cfg.confettiCount=parseInt(document.getElementById('g-confetti').value)||80;
+  cfg.adminUser=document.getElementById('g-user').value||'admin';
+  const np=document.getElementById('g-pass').value;if(np)cfg.adminPass=np;
+  cfg.features={confetti:document.getElementById('f-confetti').checked,petals:document.getElementById('f-petals').checked,hint:document.getElementById('f-hint').checked};
+  saveCfg(cfg);toast('✓ Đã lưu cài đặt game!','s');hideSaveBar();
+}
+
+// ── SAVE BAR ──
+function hideSaveBar(){document.getElementById('save-bar').classList.remove('show');pendingCfg=null}
+document.getElementById('save-btn')?.addEventListener('click',()=>{
+  const active=document.querySelector('.tab.on');
+  if(!active)return;
+  if(active.id==='tab-config-ratio')saveRatioConfig();
+  else if(active.id==='tab-config-special')saveSpecialConfig();
+  else{applyGameConfig()}
+});
+document.getElementById('discard-btn')?.addEventListener('click',()=>{hideSaveBar();populateConfigForms();renderRatioTable()});
+
+// ── NAVIGATION ──
+function setupNav(){
+  document.querySelectorAll('[data-tab]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('[data-tab]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+      const t=document.getElementById('tab-'+btn.dataset.tab);if(t)t.classList.add('on');
+      document.getElementById('topbar-title').textContent=btn.querySelector('.nlbl')?.textContent||'Dashboard';
+      if(btn.dataset.tab==='analytics'){renderCharts('c-dist2','c-open2');renderStatTable()}
+      if(btn.dataset.tab==='log')renderLog();
+    });
+  });
+}
+
+// ── CONTROLS ──
+function setupControls(){
+  document.getElementById('env-search')?.addEventListener('input',function(){renderEnvTable(document.getElementById('env-filter').value,this.value)});
+  document.getElementById('env-filter')?.addEventListener('change',function(){renderEnvTable(this.value,document.getElementById('env-search').value)});
+  document.getElementById('logout-btn')?.addEventListener('click',()=>{clearSess();window.location.reload()});
+  document.getElementById('refresh-btn')?.addEventListener('click',()=>{gameData=loadGame();if(!gameData.length)gameData=genDemoData();renderAll();toast('↺ Đã làm mới','i')});
+  document.getElementById('export-btn')?.addEventListener('click',exportCSV);
+  document.getElementById('reset-game-btn')?.addEventListener('click',()=>{if(confirm('Đặt lại toàn bộ game? Tất cả ô về trạng thái chưa mở.')){gameData.forEach(e=>{e.opened=false;e.openedAt=null});saveGame(gameData);renderAll();toast('✓ Đã đặt lại game','s')}});
+  document.getElementById('save-ratio-btn')?.addEventListener('click',saveRatioConfig);
+  document.getElementById('save-special-btn')?.addEventListener('click',saveSpecialConfig);
+  // Watch config inputs for dirty
+  ['g-title','g-sub','g-confetti','g-user','g-pass','f-confetti','f-petals','f-hint'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.addEventListener('change',markDirty);
+  });
+}
+
+// ── EXPORT ──
+function exportCSV(){
+  const h=['ID','Loại','Hiển thị','Thực tế','Trạng thái','Thời gian'];
+  const rows=gameData.map(e=>['#'+String(e.id).padStart(2,'0'),e.isSpecial?'Đặc biệt':'Thường',e.displayValue+'k',e.realValue+'k',e.opened?'Đã mở':'Chưa mở',e.openedAt?new Date(e.openedAt).toLocaleString('vi-VN'):'—']);
+  const csv=[h,...rows].map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download=`lixi-${new Date().toLocaleDateString('vi-VN').replaceAll('/','-')}.csv`;a.click();
+  toast('📥 Đã xuất CSV','s');
+}
+
+// ── TOAST ──
+const toastEl=document.getElementById('toast');let toastT;
+function toast(msg,t='i'){if(!toastEl)return;toastEl.textContent=msg;toastEl.className='toast '+t+' show';clearTimeout(toastT);toastT=setTimeout(()=>toastEl.classList.remove('show'),3200)}
 </script>
 </body>
 </html>
